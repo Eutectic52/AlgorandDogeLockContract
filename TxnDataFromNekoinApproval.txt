@@ -1,0 +1,138 @@
+#pragma version 5
+	txn ApplicationID
+	int 0
+	==
+	bnz label1
+	txn OnCompletion
+	int 0
+	==
+	bnz label2
+	txn OnCompletion
+	int 1
+	==
+	bnz label3
+	txn OnCompletion
+	pushint 5
+	==
+	bnz label4
+	txn OnCompletion
+	pushint 2
+	==
+	txn OnCompletion
+	int 4
+	==
+	||
+	bnz label5
+	err
+label5:
+	int 0
+	return
+label4:
+	txn Sender
+	byte base64 cmVjZWl2ZXJfYWRkcmVzc19rZXk=
+	app_global_get
+	==
+	byte base64 dW5sb2NrX3RpbWU=
+	app_global_get
+	global LatestTimestamp
+	<=
+	&&
+	assert
+	byte base64 YXNzZXRfaWQ=
+	app_global_get
+	byte base64 cmVjZWl2ZXJfYWRkcmVzc19rZXk=
+	app_global_get
+	callsub label6
+	byte base64 cmVjZWl2ZXJfYWRkcmVzc19rZXk=
+	app_global_get
+	callsub label7
+	int 1
+	return
+label3:
+	txn Sender
+	byte base64 cmVjZWl2ZXJfYWRkcmVzc19rZXk=
+	app_global_get
+	==
+	assert
+	int 1
+	return
+label2:
+	txn Sender
+	byte base64 cmVjZWl2ZXJfYWRkcmVzc19rZXk=
+	app_global_get
+	==
+	global LatestTimestamp
+	byte base64 dW5sb2NrX3RpbWU=
+	app_global_get
+	<
+	&&
+	assert
+	itxn_begin
+	int 4
+	itxn_field TypeEnum
+	byte base64 YXNzZXRfaWQ=
+	app_global_get
+	itxn_field XferAsset
+	global CurrentApplicationAddress
+	itxn_field AssetReceiver
+	itxn_submit
+	int 1
+	return
+label1:
+	global LatestTimestamp
+	txna ApplicationArgs 2
+	btoi
+	<
+	txn Sender
+	txna ApplicationArgs 1
+	==
+	&&
+	assert
+	byte base64 YXNzZXRfaWQ=
+	txna ApplicationArgs 0
+	btoi
+	app_global_put
+	byte base64 cmVjZWl2ZXJfYWRkcmVzc19rZXk=
+	txna ApplicationArgs 1
+	app_global_put
+	byte base64 dW5sb2NrX3RpbWU=
+	txna ApplicationArgs 2
+	btoi
+	app_global_put
+	int 1
+	return
+label6:
+	store 1
+	store 0
+	global CurrentApplicationAddress
+	load 0
+	asset_holding_get AssetBalance
+	store 2
+	store 3
+	load 2
+	bz label8
+	itxn_begin
+	int 4
+	itxn_field TypeEnum
+	load 0
+	itxn_field XferAsset
+	load 1
+	itxn_field AssetCloseTo
+	itxn_submit
+label8:
+	retsub
+label7:
+	store 4
+	global CurrentApplicationAddress
+	balance
+	int 0
+	!=
+	bz label9
+	itxn_begin
+	int 1
+	itxn_field TypeEnum
+	load 4
+	itxn_field CloseRemainderTo
+	itxn_submit
+label9:
+	retsub
