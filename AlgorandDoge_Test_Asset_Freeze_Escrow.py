@@ -12,7 +12,7 @@ def approval_program():
     # We will freeze the creator wallet's 10k Pups.
     receiver_address_key = Bytes("receiver_address_key")
     # Timestamp after which this smart contract can be closed.
-    # For Nekoin, this is 1669881600 which is December 1, 2022 00:00:00 PST
+    # For AlgorandDogeTestAsset, this is 1669881600 which is December 1, 2022 00:00:00 PST
     unlock_time_key = Bytes("unlock_time")
 
     # Sends all of the asset specified by assetID to the specified account.
