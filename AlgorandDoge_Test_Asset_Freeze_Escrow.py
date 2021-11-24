@@ -53,7 +53,7 @@ def approval_program():
         )
 
     # OnCreate handles creating this freeze smart contract.
-    # arg[0]: the assetID of the asset we want to freeze. For Nekoin it is 404044168
+    # arg[0]: the assetID of the asset we want to freeze. For AlgorandDogeTestAsset it is 47300142
     # arg[1]: the recipient of the assets held in this smart contract. Must be the creator.
     # arg[2]: the Unix timestamp of when this smart contract can be closed. When the 
     #         contract is closed, everything is sent to the receiver.
