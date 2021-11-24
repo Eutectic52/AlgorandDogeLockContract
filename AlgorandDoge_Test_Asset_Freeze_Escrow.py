@@ -5,7 +5,7 @@ def approval_program():
     # Keys for the global data stored by this smart contract.
 
     # AssetID that this smart contract will freeze.
-    # For Nekoin, this is 404044168.
+    # For AlgorandDogeTestAsset, this is 47300142.
     asset_id_key = Bytes("asset_id")
     # Address of the wallet that will receive the funds in this smart contract when it is closed.
     # For Nekoin, this is T4DCI74KWWQA437VGK7VO5VAQ2XQE5LUMC2SKY4IQ7P4PRDRXU4KYHDJH4.
