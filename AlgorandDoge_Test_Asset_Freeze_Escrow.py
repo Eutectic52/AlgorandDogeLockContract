@@ -8,8 +8,8 @@ def approval_program():
     # For AlgorandDogeTestAsset, this is 47300142.
     asset_id_key = Bytes("asset_id")
     # Address of the wallet that will receive the funds in this smart contract when it is closed.
-    # For Nekoin, this is T4DCI74KWWQA437VGK7VO5VAQ2XQE5LUMC2SKY4IQ7P4PRDRXU4KYHDJH4.
-    # We will freeze the creator wallet's 500 million Nekos.
+    # For AlgorandDogeTestAsset, this is C6FK73ZB6NB6M5Y2WWTSGNRFW2XFUJMK5MSTBGS36MB7BD3SDQXJI6MI44.
+    # We will freeze the creator wallet's 10k Pups.
     receiver_address_key = Bytes("receiver_address_key")
     # Timestamp after which this smart contract can be closed.
     # For Nekoin, this is 1669881600 which is December 1, 2022 00:00:00 PST
